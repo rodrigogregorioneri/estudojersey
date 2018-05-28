@@ -1,5 +1,6 @@
 package entities;
 
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -13,28 +14,22 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 
+
+
 @Entity
-public class Pessoa implements Serializable {
-    private static final long serialVersionUID = -1905907502453138175L;
+public class Aluno implements Serializable {
+    private static final long serialVersionUID = -4292880217218734067L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
-    private String cpf;
+    private Long matricula;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "PESSOA_TELEFONE",
-            joinColumns = {@JoinColumn(name = "PESSOA_ID")},
+    @JoinTable(name = "ALUNO_TELEFONE",
+            joinColumns = {@JoinColumn(name = "ALUNO_ID")},
             inverseJoinColumns = {@JoinColumn(name = "TELEFONE_ID")})
     private List<Telefone> telefones;
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     public Long getId() {
         return id;
@@ -42,6 +37,14 @@ public class Pessoa implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(Long matricula) {
+        this.matricula = matricula;
     }
 
     public String getNome() {
@@ -59,4 +62,5 @@ public class Pessoa implements Serializable {
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
     }
+
 }
